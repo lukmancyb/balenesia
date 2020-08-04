@@ -8,10 +8,9 @@
                     <h4>Useful Links</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Tutorial</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Artikel</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Kontak</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,7 +32,7 @@
 </footer>
 
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-<div id="preloader"></div>
+{{-- <div id="preloader"></div> --}}
 
 <!-- Vendor JS Files -->
 <script src="{{asset('frontend/assets/vendor/jquery/jquery.min.js')}}"></script>

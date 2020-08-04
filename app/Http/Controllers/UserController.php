@@ -62,7 +62,9 @@ class UserController extends Controller
             $users = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'gambar' => $request->gambar,
+                'type' => $request->type
             ]);
 
             return redirect()->back()->with('success', 'User Berhasil ditambahkan');
@@ -122,13 +124,16 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'gambar' => $request->gambar,
                 'type' => $request->type
             ];
         }else{
             $request_data = [
                 'name' => $request->name,
                 'email' => $request->email,
-                'type' => $request->type
+                'type' => $request->type,
+                'gambar' => $request->gambar
+
             ];
         }
 

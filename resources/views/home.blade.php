@@ -1,5 +1,6 @@
 @extends('template_backend._section')
 @section('sub-title', $sub_title)
+@section('app_title', $app_title)
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

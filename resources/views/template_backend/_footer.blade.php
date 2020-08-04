@@ -56,6 +56,12 @@
 
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+
+{{-- <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script> --}}
+<script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+{{-- <link href="{{ asset('assets/ckeditor/plugins/codesnippet/lib/highlight/styles/arta.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script> --}}
+
 @yield('script')
 {{-- <script src="{{asset('assets/js/page/features-post-create.js')}}"></script> --}}
 

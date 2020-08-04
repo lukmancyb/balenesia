@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Bootslander Bootstrap Template</title>
+  <title>@yield('app_title')</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -29,6 +29,12 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('frontend/assets/css/style.css')}}" rel="stylesheet">
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/dracula.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
   <style>
     /* Note: Try to remove the following lines to see the effect of CSS positioning */
     .affix {

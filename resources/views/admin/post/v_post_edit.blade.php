@@ -27,14 +27,15 @@
                     </div>
                     <form action="{{ route('post.update', $posts->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PATCH')
                         <div class="form-row">
 
                             <div class="form-group col-lg-4 md-12">
                                 <div class="form-group col-md-12">
                                     <label for="inputCity">Thumbnail *</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="gambar" name="gambar" class="form-control" placeholder=""
-                                            aria-label="">
+                                        <input type="text" id="gambar" name="gambar" value="{{$posts->gambar}}"
+                                            class="form-control" placeholder="" aria-label="">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" id="lfm" data-input="gambar"
                                                 data-preview="holder" type="button">Button</button>
@@ -42,8 +43,9 @@
                                     </div>
                                     <div class="form-group">
                                         <article class="article article-style-b">
-                                            <div class="article-header" >
-                                            <img class="article-image" id="holder" src="{{asset('assets/img/avatar/avatar-1.png')}}" style="width: 100%;">
+                                            <div class="article-header">
+                                                <img class="article-image" id="holder" src="{{$posts->gambar}}"
+                                                    style="width: 100%;">
                                             </div>
 
                                         </article>
@@ -54,7 +56,8 @@
                             <div class="form-group col-lg-8 md-12">
                                 <div class="form-group col-md-12">
                                     <label for="inputCity">Title *</label>
-                                    <input type="text" class="form-control" name="title" id="title" required>
+                                    <input type="text" class="form-control" value="{{$posts->title}}" name="title"
+                                        id="title" required>
 
                                 </div>
                                 <div class="form-row col-md-12">
@@ -64,13 +67,17 @@
                                             required>
                                             <option value="" holder>--Pilih Category --</option>
                                             @foreach ($category as $item)
-                                            <option value="{{$item->id}}"> {{$item->name}} </option>
+                                            <option value="{{$item->id}}" @if ($posts->category_id == $item->id)
+                                                selected
+                                                @endif
+                                                > {{$item->name}} </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Slug *</label>
-                                        <input type="text" class="form-control" name="slug" id="slug" required>
+                                        <input type="text" class="form-control" name="slug" id="slug"
+                                            value="{{$posts->slug}}" required>
                                     </div>
                                 </div>
                                 <div class="form-row col-md-12">
@@ -78,7 +85,13 @@
                                         <label for="inputState">Tags</label>
                                         <select class="form-control select2" multiple="" name="tags[]">
                                             @foreach ($tags as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                            <option value="{{$item->id}}" @foreach ($posts->tags as $tag)
+                                                @if ($item->id == $tag->id)
+                                                selected
+                                                @endif
+                                                @endforeach
+
+                                                >{{$item->name}}</option>
                                             @endforeach
 
                                         </select>
@@ -86,8 +99,13 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Status</label>
                                         <select class="form-control selectric" name="status" id="status">
-                                            <option value="1">Publish</option>
-                                            <option value="0">Draft</option>
+                                            <option value="1" @if ($posts->status == 1)
+                                                selected
+                                                @endif>Publish</option>
+                                            <option value="0" @if ($posts->status == 0)
+                                                selected
+                                                @endif
+                                                >Draft</option>
                                         </select>
                                     </div>
                                 </div>
@@ -95,11 +113,11 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <textarea name="content" id="content"></textarea>
+                                <textarea name="content" id="content" placeholder="Hello">{!! htmlspecialchars($posts->content) !!}</textarea>
                             </div>
                         </div>
                         <div class="form-group mb-0 text-right">
-                            <button type="submit" class="btn btn-primary">Create Post</button>
+                            <button type="submit" class="btn btn-primary">Update Post</button>
                         </div>
                 </div>
                 </form>
@@ -115,15 +133,18 @@
 @section('script')
 
 
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 <script>
     var options = {
-    filebrowserImageBrowseUrl: APP_URL + '/laravel-filemanager?type=Images',
-    filebrowserImageUploadUrl: APP_URL + '/laravel-filemanager/upload?type=Images&_token=',
-    filebrowserBrowseUrl: APP_URL + '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: APP_URL + '/laravel-filemanager/upload?type=Files&_token='
+        extraPlugins: 'codesnippet',
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl:  '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+        height: '500px',
   };
-  CKEDITOR.replace('content', options);
+  CKEDITOR.disableAutoInline = true;
+    // CKEDITOR.inline( 'content' );
+  CKEDITOR.inline('content', options);
 </script>
 
 <script>

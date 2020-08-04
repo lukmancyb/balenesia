@@ -42,8 +42,10 @@
                                     </div>
                                     <div class="form-group">
                                         <article class="article article-style-b">
-                                            <div class="article-header" >
-                                            <img class="article-image" id="holder" src="{{asset('assets/img/avatar/avatar-1.png')}}" style="width: 100%;">
+                                            <div class="article-header">
+                                                <img class="article-image" id="holder"
+                                                    src="{{asset('assets/img/avatar/avatar-1.png')}}"
+                                                    style="width: 100%;">
                                             </div>
 
                                         </article>
@@ -115,14 +117,17 @@
 @section('script')
 
 
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
+
 <script>
     var options = {
-    filebrowserImageBrowseUrl: APP_URL + '/laravel-filemanager?type=Images',
-    filebrowserImageUploadUrl: APP_URL + '/laravel-filemanager/upload?type=Images&_token=',
-    filebrowserBrowseUrl: APP_URL + '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: APP_URL + '/laravel-filemanager/upload?type=Files&_token='
+    extraPlugins: 'codesnippet',
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
   };
+
   CKEDITOR.replace('content', options);
 </script>
 

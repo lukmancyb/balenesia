@@ -25,7 +25,9 @@ class HomeController extends Controller
     public function index()
     {
         $sub_title = 'Home';
-        return view('home', compact('sub_title'));
+        $app_title = "Home - Web Untuk Belajar Teknologi dan Pemrogramman";
+
+        return view('home', compact('sub_title','app_title'));
     }
 
     public function show($id){

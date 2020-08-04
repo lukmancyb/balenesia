@@ -1,5 +1,6 @@
 @extends('template_backend._section')
 @section('sub-title', $sub_title)
+@section('app_title', $app_title)
 
 @section('content')
 
@@ -32,17 +33,19 @@
                         <th>Title</th>
                         <th>Category</th>
                         <th>Thumbnail</th>
+                        <th>Updated At</th>
                         <th>Creator</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item => $hasil)
+                    @foreach ($data as $item => &$hasil)
                     <tr>
                         <td>{{$item + $data->firstitem()}}</td>
-                        <td>{{$hasil->title}}</td>
+                        <td>{{ucwords(trans($hasil->title))}}</td>
                         <td>{{$hasil->category->name}}</td>
                         <td><img src="{{asset($hasil->gambar)}}" alt="img" class="img-fluid" style="width: 50px"></td>
+                    <td>{{date('d M Y', strtotime($hasil->updated_at))}}</td>
                         <td>{{$hasil->users->name}}</td>
                         <td>
                             <form action="{{ route('post.destroy', $hasil->id) }}" method="POST">

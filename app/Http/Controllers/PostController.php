@@ -20,10 +20,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Posts::paginate(10);
+        $data = Posts::orderBy('updated_at', 'desc')->paginate(10);
         $sub_title = "Post";
+        $app_title = "Post - List";
         $lead = "Ini adalah halaman list Post";
-        return view('admin.post.v_post', compact('data','sub_title', 'lead'));
+        return view('admin.post.v_post', compact('data','sub_title','app_title', 'lead'));
         // return view('admin.post.v_post');
     }
 
@@ -101,6 +102,7 @@ class PostController extends Controller
         $category = Category::all();
         $posts = Posts::findorfail($id);
         $tags = Tags::all();
+        // dd($posts);
         $sub_title = "Edit Post";
         $lead = "Ini halaman untuk mengubah postingan";
         return view('admin.post.v_post_edit', compact('category','sub_title', 'lead', 'tags', 'posts'));
@@ -126,17 +128,12 @@ class PostController extends Controller
         $post = Posts::findorfail($id);
 
         if($request->has('gambar')){
-            $gambar = $request->gambar;
-            $new_gambar = time().$gambar->getClientOriginalName();
-            if(File::exists($post->gambar)) {
-                File::delete($post->gambar);
-            }
-             $gambar->move('public/uploads/posts/', $new_gambar);
+         
              $post_data = [
                 'title' => $request->title,
                 'category_id' => $request->category_id,
                 'content' => $request->content,
-                'gambar' => 'public/uploads/posts/'.$new_gambar,
+                'gambar' => $request->gambar,
                 'status' => $request->status,
                 'slug' => Str::slug($request->slug)
             ];
