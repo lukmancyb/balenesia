@@ -30,4 +30,8 @@ class BlogController extends Controller
 
         return view('frontend.v_detail', compact('data'));
     }
+
+    public function tutorials(){
+        return view('frontend.tutorial.v_tutorial');
+    }
 }

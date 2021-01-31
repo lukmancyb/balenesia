@@ -133,18 +133,18 @@
 @section('script')
 
 
+
+
 <script>
     var options = {
-        extraPlugins: 'codesnippet',
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserImageUploadUrl:  '/laravel-filemanager/upload?type=Images&_token=',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
-        height: '500px',
+    extraPlugins: 'codesnippet',
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
   };
-  CKEDITOR.disableAutoInline = true;
-    // CKEDITOR.inline( 'content' );
-  CKEDITOR.inline('content', options);
+
+  CKEDITOR.replace('content', options);
 </script>
 
 <script>

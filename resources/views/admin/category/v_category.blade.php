@@ -108,7 +108,6 @@
     var forms = document.getElementsByClassName('needs-validation');
     $(function() {
         showActionAdd()
-      
     });
 
     function showActionAdd(){

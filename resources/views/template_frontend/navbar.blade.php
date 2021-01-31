@@ -9,9 +9,9 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="{{route('app.landing')}}">Home</a></li>
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Artikel</a></li>
+                <li class="{{set_active('app.landing')}}"><a href="{{route('app.landing')}}">Home</a></li>
+                <li class="{{set_active('app.tutorials')}}"><a href="{{route('app.tutorials')}}">Tutorial</a></li>
+            <li><a href="#">Artikel</a></li>
                 {{-- <li class="drop-down"><a href="">Drop Down</a>
                     <ul>
                         <li><a href="#">Drop Down 1</a></li>

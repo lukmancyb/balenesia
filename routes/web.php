@@ -25,32 +25,22 @@ Route::get('/manager-image', function () {
     return view('admin/filemanager/filemanager');
 })->name('filemanager.image');
 
-
-
-
-
-
 Route::group(['middleware' => 'auth'], function () {
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/users', 'UserController');
-
-Route::resource('tag', 'TagController');
-Route::post('tag/save', 'TagController@save');
-
-Route::resource('category', 'CategoryController');
-Route::post('category/save', 'CategoryController@save');
-
-Route::get('post/trashed', 'PostController@trashedPost')->name('post.trashed_post');
-Route::get('post/restore/{id}', 'PostController@restore')->name('post.restore');
-Route::delete('post/kill/{id}', 'PostController@kill')->name('post.kill');
-Route::resource('post', 'PostController');
-
-
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/users', 'UserController');
+    Route::resource('tag', 'TagController');
+    Route::post('tag/save', 'TagController@save');
+    Route::resource('category', 'CategoryController');
+    Route::post('category/save', 'CategoryController@save');
+    Route::get('post/trashed', 'PostController@trashedPost')->name('post.trashed_post');
+    Route::get('post/restore/{id}', 'PostController@restore')->name('post.restore');
+    Route::delete('post/kill/{id}', 'PostController@kill')->name('post.kill');
+    Route::resource('post', 'PostController');
 });
 
 
 Route::get('/', 'BlogController@index')->name('app.landing');
+Route::get('/tutorial', 'BlogController@tutorials')->name('app.tutorials');
 Route::get('/{slug}', 'BlogController@show')->name('app.show');
 Route::get('/{any}', function ($any) {
 
@@ -58,6 +48,3 @@ Route::get('/{any}', function ($any) {
     return view('frontend.notfound.v_notfound');
   
   })->where('any', '.*');
-
-
-
